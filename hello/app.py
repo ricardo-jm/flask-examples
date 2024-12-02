@@ -8,6 +8,8 @@
 import click
 from flask import Flask
 
+from werkzeug.utils import escape  # Import escape function
+
 app = Flask(__name__)
 
 
@@ -28,6 +30,7 @@ def say_hello():
 @app.route('/greet', defaults={'name': 'Programmer'})
 @app.route('/greet/<name>')
 def greet(name):
+    escape(name)
     return '<h1>Hello, %s!</h1>' % name
 
 
